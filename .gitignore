@@ -35,3 +35,6 @@ _build/
 deps/
 erl_crash.dump
 *.ez
+
+# Project runtime directories
+persist/
