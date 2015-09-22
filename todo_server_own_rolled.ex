@@ -35,8 +35,6 @@ defmodule TodoServer do
 	end
 end
 
-# 425
-
 defmodule TodoList do
 	defstruct auto_id: 1, entries: HashDict.new
 
