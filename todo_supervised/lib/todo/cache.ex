@@ -11,7 +11,7 @@ defmodule Todo.Cache do
 
 	def init(_) do
 		IO.puts("Starting to-do cache.")
-		Todo.Database.start("./persist/")
+		Todo.Database.start_link("./persist/")
 		{:ok, HashDict.new}
 	end
 
@@ -19,7 +19,7 @@ defmodule Todo.Cache do
 		case HashDict.fetch(todo_servers, name) do
 			{:ok, todo_server} -> {:reply, todo_server, todo_servers}
 			:error ->
-				{:ok, new_server} = Todo.Server.start(name)
+				{:ok, new_server} = Todo.Server.start_link(name)
 				{:reply, new_server, HashDict.put(todo_servers, name, new_server)}
 		end
 	end

@@ -13,8 +13,8 @@ defmodule Todo.Server do
 		GenServer.call(pid, {:entries, date})
 	end
 
-	def start(name) do
-		GenServer.start(Todo.Server, name)
+	def start_link(name) do
+		GenServer.start_link(Todo.Server, name)
 	end
 
 	def init(name) do
