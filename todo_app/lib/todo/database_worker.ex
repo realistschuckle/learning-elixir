@@ -23,7 +23,6 @@ defmodule Todo.DatabaseWorker do
 		file_name(db_dir, key)
 		|> File.write!(:erlang.term_to_binary(data))
 
-		IO.puts("Stored #{data} for #{key}")
 		{:noreply, db_dir}
 	end
 
