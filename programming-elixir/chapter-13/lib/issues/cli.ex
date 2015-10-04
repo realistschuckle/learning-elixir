@@ -7,7 +7,7 @@ defmodule Issues.CLI do
 	table of the last _n_ issues in a github project
 	"""
 
-	def run(argv) do
+	def main(argv) do
 		argv
 		|> parse_args
 		|> process
@@ -26,6 +26,7 @@ defmodule Issues.CLI do
 		parse = OptionParser.parse(argv, strict: [help: :boolean], aliases: [h: :help])
 		case parse do
 			{[help: true], _, _} -> :help
+			{[], [], []} -> :help
 			{_, [user, project, count], _} -> {user, project, String.to_integer(count)}
 			{_, [user, project], _} -> {user, project, @default_count}
 			true -> :help

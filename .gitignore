@@ -33,6 +33,7 @@ tramp
 
 *.beam
 _build/
+_cli/
 deps/
 erl_crash.dump
 *.ez
