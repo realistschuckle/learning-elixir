@@ -115,3 +115,8 @@ defmodule Exercise6B do
 		raise "I'm outta here!"
 	end
 end
+
+Exercise3.run
+# Exercise4.run
+Exercise6A.run
+Exercise6B.run
