@@ -1,14 +1,13 @@
-defmodule Stack.Supervisor do
+defmodule Stack.ServerSupervisor do
 	use Supervisor
 
-	def start_link(state \\ []) do
-		IO.puts("Starting Stack.Supervisor with #{state}")
-		Supervisor.start_link(__MODULE__, state)
+	def start_link do
+		Supervisor.start_link(__MODULE__, nil)
 	end
 
-	def init(state) do
+	def init(_) do
 		children = [
-			worker(Stack.Server, [state])
+			worker(Stack.Server, [])
 		]
 		supervise(children, strategy: :one_for_one)
 	end

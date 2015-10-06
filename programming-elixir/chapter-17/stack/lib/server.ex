@@ -9,9 +9,12 @@ defmodule Stack.Server do
 		GenServer.cast(__MODULE__, {:push, value})
 	end
 
-	def start_link(state \\ []) do
-		IO.puts("Starting Stack.Server with #{state}")
-		GenServer.start_link(__MODULE__, state, name: __MODULE__)
+	def start_link do
+		GenServer.start_link(__MODULE__, nil, name: __MODULE__)
+	end
+
+	def init(_) do
+		{:ok, Stack.Stash.get}
 	end
 
 	def handle_call(:pop, _, [head | tail]) do
@@ -20,5 +23,10 @@ defmodule Stack.Server do
 
 	def handle_cast({:push, value}, list) do
 		{:noreply, [value | list]}
+	end
+
+	def terminate(_, state) do
+		Stack.Stash.put(state)
+		:ok
 	end
 end
