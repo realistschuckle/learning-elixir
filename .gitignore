@@ -32,10 +32,10 @@ tramp
 .cask/
 
 *.beam
-_build/
-_cli/
-db/
-deps/
+**/_build/
+**/_cli/
+**/db/
+**/deps/
 erl_crash.dump
 *.ez
 
@@ -68,9 +68,9 @@ build/Release
 # Dependency directory
 node_modules
 
-## Phoenix
-config/prod.secret.exs
-priv/static
+# Phoenix
+prod.secret.exs
+**/priv/static
 
 # Project runtime directories
-persist/
+**/persist/
