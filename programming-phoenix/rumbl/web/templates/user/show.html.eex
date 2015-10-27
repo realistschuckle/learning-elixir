@@ -1,0 +1,6 @@
+<%= link("Back", to: user_path(@conn, :index)) %>
+<h1>A User!</h1>
+
+<div>
+	<%= render("user.html", user: @user) %>
+</div>
