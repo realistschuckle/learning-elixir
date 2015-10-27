@@ -1,6 +1,8 @@
 defmodule Rumbl.Auth do
 	import Plug.Conn
 	import Comeonin.Bcrypt, only: [checkpw: 2]
+	import Phoenix.Controller
+	alias Rumbl.Router.Helpers
 
 	def init(opts) do
 		Keyword.fetch!(opts, :repo)
@@ -11,6 +13,21 @@ defmodule Rumbl.Auth do
 		user = user_id && repo.get(Rumbl.User, user_id)
 		assign(conn, :current_user, user)
 	end
+
+	def authenticate_user(conn, _) do
+		conn.assigns.current_user
+		|> do_authenticate_user(conn)
+	end
+
+	defp do_authenticate_user(nil, conn) do
+		conn
+		|> put_flash(:error, "You must be logged in to access that page.")
+		|> redirect(to: Helpers.page_path(conn, :index))
+		|> halt
+	end
+
+	defp do_authenticate_user(_, conn),
+		do: conn
 
 	def logout(conn) do
 		conn
