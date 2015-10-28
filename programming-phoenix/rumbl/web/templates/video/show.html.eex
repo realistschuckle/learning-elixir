@@ -13,6 +13,11 @@
   </li>
 
   <li>
+    <strong>Categroy:</strong>
+    <%= @video.category.name %>
+  </li>
+
+  <li>
     <strong>Title:</strong>
     <%= @video.title %>
   </li>
